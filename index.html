@@ -78,7 +78,8 @@
      order.addEventListener("click",()=> {
          let name = document.getElementById("user_name").value;
          let data={name:name}
-         tg.sendData(JSON.stringify(data));
+         //tg.sendData(JSON.stringify(data));
+         tg.sendData('отправлена инфа');
          tg.close();
      });
   
