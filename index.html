@@ -47,10 +47,31 @@
 </head>
 <body>
     <div id = 'main'>
-    <h1>Добро пожаловать на мою первую веб-страницу!</h1>
-    <p>Это пример простого HTML-документа.</p>
+        <h1>Добро пожаловать на мою первую веб-страницу!</h1>
+        <p>Это пример простого HTML-документа.</p>
         <button id = 'buy'> Действие </button>
     </div>
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <form id = 'form'>
+        <input type="text" placeholder="Имя" id = 'user_name'>
+        <button id = 'order'> Действие формы </button>
+    </form>
+
+
+        <script >
+            let tg  = window.Telegram.WebApp;
+            let buy = document.getElementById("buy");
+            let order = document.getElementById("buy");
+
+            buy.addEventListener("click",()=> {
+                document.getElementById("main").style.display = 'none';
+                document.getElementById("form").style.display = 'block';
+                document.getElementById("user_name").value = tg.initDataUnsafe.first_name;                
+
+            });
+
+        </script>
+
+
 </body>
 </html>
