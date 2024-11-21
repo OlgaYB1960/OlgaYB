@@ -71,11 +71,11 @@
             });
      order.addEventListener("click",()=> {
          let name = document.getElementById("user_name").value;
+         let data={name:name}
+         tg.sendData(JSON.stringify(data));
          tg.close();
      });
-     let data={name:name}
-     tg.sendData(JSON.stringify(data));
-     });
+  
         </script>
 
 </body>
