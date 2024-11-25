@@ -66,7 +66,8 @@
     </form>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
  <script >
-            Telegram.WebApp.onEvent('mainButtonClicked', function(){
+         let tg = window.Telegram.WebApp;  
+	 tg.onEvent('mainButtonClicked', function(){
         	tg.sendData("some string that we need to send"); 
         	//при клике на основную кнопку отправляем данные в строковом виде
             });      
