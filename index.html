@@ -80,10 +80,11 @@
               
             });
      order.addEventListener("click",()=> {
-         let name = document.getElementById("user_name").value;
-         let data={name:name}
+          let name = document.getElementById("user_name").value;
+         let data={name:name};
+	 let date_temp = JSON.stringify(data);
          //tg.sendData(JSON.stringify(data));
-         tg.sendData('отправлена инфа');
+         tg.sendData(JSON.stringify(data));
          tg.close();
      });
   
