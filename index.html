@@ -254,11 +254,18 @@ details, summary {
               <details class="AdvancedOptions">
                 <summary>Дополнительные опции</summary>
                 <form class="options">
-                 
+                  <div>
+                    <b>Поиск в поле:</b>
+                    <label>
+                      <input type="checkbox" name="fields" value="p" checked />
+                      p
+                    </label>
+                   
+                  </div>
                   <div>
                     <b>Search options:</b>
-                    <label><input type="checkbox" name="Начинается" value="true" checked /> Prefix</label>
-                    <label><input type="checkbox" name="Размытый" value="true" checked /> Fuzzy</label>
+                    <label><input type="checkbox" name="prefix" value="true" checked /> Начинается</label>
+                    <label><input type="checkbox" name="fuzzy" value="true" checked /> Размытый</label>
                   </div>
                   <div>
                     <b>Комбинирование условий:</b>
