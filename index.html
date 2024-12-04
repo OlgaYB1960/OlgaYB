@@ -412,8 +412,7 @@ const getSuggestions = (query) => {
 
 const renderSearchResults = (results) => {
   $songList.innerHTML = results.map(({ p }) => {
-    return `<li class="Song">
-      <h3>${capitalize(title)}</h3>
+    return `<li class="Song">    
       <dl>
         <dt>Результат:</dt> <dd>${capitalize(p)}</dd>
        </dl>
