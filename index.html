@@ -407,9 +407,7 @@ const getSearchResults = (query) => {
 }
 
 const getSuggestions = (query) => {
-  return miniSearch.autoSuggest(query, { boost: { p: 5 } })
-    .filter(({ suggestion, score }, _, [first]) => score > first.score / 4)
-    .slice(0, 5)
+  return miniSearch.autoSuggest(query, { boost: { p: 5 } })   
 }
 
 const renderSearchResults = (results) => {
