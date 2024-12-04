@@ -424,9 +424,7 @@ const getSearchOptions = () => {
   searchOptions.fields = ['p']
   searchOptions.combineWith = 'OR'
  
-  searchOptions.filter = ({ year }) => {
-    year = parseInt(year, 10)
-    return year >= fromYear && year <= toYear
+  searchOptions.filter = null
   }
 
   return searchOptions
