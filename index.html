@@ -332,22 +332,27 @@ const $options = document.querySelector('.AdvancedOptions form')
 $app.classList.add('loading')
 let songsById = {}
 
-       var arr = [
- {
-  "p": [
-    "Новостей пока нет.",
-    {
-      "a": {
-        "@href": "https://lkexp.wiki.sogaz-med.ru/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE_%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F_%D0%BF%D0%BE_%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5_%D0%B2_%D0%9B%D0%B8%D1%87%D0%BD%D0%BE%D0%BC_%D0%BA%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%D0%B5_(%D0%9B%D0%9A)",
-        "@target": "_blank",
-        "span": {
-          "@style": "font-size: large;",
-          "#text": "Руководство пользователя по работе с Личным кабинетом"
+var arr = [
+  {
+ "id": 0,    
+"p": [
+      "Новостей пока нет.",
+      {
+        "a": {
+          "@href": "https://lkexp.wiki.sogaz-med.ru/%D0%A0%D1%83%D0%BA%D0%BE%D0%B2%D0%BE%D0%B4%D1%81%D1%82%D0%B2%D0%BE_%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D1%8F_%D0%BF%D0%BE_%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B5_%D0%B2_%D0%9B%D0%B8%D1%87%D0%BD%D0%BE%D0%BC_%D0%BA%D0%B0%D0%B1%D0%B8%D0%BD%D0%B5%D1%82%D0%B5_(%D0%9B%D0%9A)",
+          "@target": "_blank",
+          "span": {
+            "@style": "font-size: large;",
+            "#text": "Руководство пользователя по работе с Личным кабинетом"
+          }
         }
       }
-    }
-  ]
-}
+    ]
+  },
+  {
+ "id": 1,   
+ "p": "оооооодддджжжж"
+  }
 ]
 console.log(arr);
 songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
