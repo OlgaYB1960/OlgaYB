@@ -423,10 +423,7 @@ const getSearchOptions = () => {
   searchOptions.prefix = true
   searchOptions.fields = ['p']
   searchOptions.combineWith = 'OR'
-
-  const fromYear = parseInt(formData.get('fromYear'), 10)
-  const toYear = parseInt(formData.get('toYear'), 10)
-
+ 
   searchOptions.filter = ({ year }) => {
     year = parseInt(year, 10)
     return year >= fromYear && year <= toYear
