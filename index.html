@@ -355,8 +355,19 @@ $app.addEventListener('click', (event) => {
   renderSuggestions([])
 })
 
+// Define functions and support variables
+const searchOptions = {
+  fuzzy: 0.2,
+  prefix: true,
+  fields: ['p'],
+  combineWith: 'OR',
+  filter: null
+}
+
+       
 const getSearchResults = (query) => {
-  return miniSearch.search(query).map(({ id }) => songsById[id])
+   const searchOptions = getSearchOptions()
+  return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
 }
 
 const getSuggestions = (query) => {
@@ -406,7 +417,23 @@ const selectSuggestion = (direction) => {
   $searchInput.value = $suggestions[nextIndex].innerText
 }
 
+const getSearchOptions = () => {
+  const searchOptions = {}
+  searchOptions.fuzzy =  0.2 
+  searchOptions.prefix = true
+  searchOptions.fields = ['p']
+  searchOptions.combineWith = 'OR'
 
+  const fromYear = parseInt(formData.get('fromYear'), 10)
+  const toYear = parseInt(formData.get('toYear'), 10)
+
+  searchOptions.filter = ({ year }) => {
+    year = parseInt(year, 10)
+    return year >= fromYear && year <= toYear
+  }
+
+  return searchOptions
+}
 
 const capitalize = (string) => string.replace(/(\b\w)/gi, (char) => char.toUpperCase())
      
