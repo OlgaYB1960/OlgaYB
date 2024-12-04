@@ -396,7 +396,7 @@ $options.addEventListener('change', (event) => {
 const searchOptions = {
   fuzzy: 0.2,
   prefix: true,
-  fields: ['title', 'artist'],
+  fields: ['p'],
   combineWith: 'OR',
   filter: null
 }
@@ -407,20 +407,18 @@ const getSearchResults = (query) => {
 }
 
 const getSuggestions = (query) => {
-  return miniSearch.autoSuggest(query, { boost: { artist: 5 } })
+  return miniSearch.autoSuggest(query, { boost: { p: 5 } })
     .filter(({ suggestion, score }, _, [first]) => score > first.score / 4)
     .slice(0, 5)
 }
 
 const renderSearchResults = (results) => {
-  $songList.innerHTML = results.map(({ artist, title, year, rank }) => {
+  $songList.innerHTML = results.map(({ p }) => {
     return `<li class="Song">
       <h3>${capitalize(title)}</h3>
       <dl>
-        <dt>Artist:</dt> <dd>${capitalize(artist)}</dd>
-        <dt>Year:</dt> <dd>${year}</dd>
-        <dt>Billbord Position:</dt> <dd>${rank}</dd>
-      </dl>
+        <dt>Результат:</dt> <dd>${capitalize(p)}</dd>
+       </dl>
     </li>`
   }).join('\n')
 
