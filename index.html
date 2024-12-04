@@ -355,14 +355,6 @@ $app.addEventListener('click', (event) => {
   renderSuggestions([])
 })
 
-// Changing any advanced option triggers a new search with the updated options
-$options.addEventListener('change', (event) => {
-  const query = $searchInput.value
-  const results = getSearchResults(query)
-  renderSearchResults(results)
-})
-
-
 const getSearchResults = (query) => {
   return miniSearch.search(query).map(({ id }) => songsById[id])
 }
