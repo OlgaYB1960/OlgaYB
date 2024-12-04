@@ -438,8 +438,6 @@ const renderSuggestions = (suggestions) => {
   $suggestionList.innerHTML = suggestions.map(({ suggestion }) => {
     return `<li class="Suggestion">${suggestion}</li>`
   }).join('\n')
-
-
   
 
   if (suggestions.length > 0) {
@@ -471,14 +469,6 @@ const getSearchOptions = () => {
   searchOptions.prefix = formData.has('prefix')
   searchOptions.fields = formData.getAll('fields')
   searchOptions.combineWith = formData.get('combineWith')
-
-  const fromYear = parseInt(formData.get('fromYear'), 10)
-  const toYear = parseInt(formData.get('toYear'), 10)
-
-  searchOptions.filter = ({ year }) => {
-    year = parseInt(year, 10)
-    return year >= fromYear && year <= toYear
-  }
 
   return searchOptions
 }
