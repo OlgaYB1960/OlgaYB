@@ -249,32 +249,7 @@ details, summary {
               </div>
 
               <ul class="SuggestionList">
-              </ul>
-
-              <details class="AdvancedOptions">
-                <summary>Дополнительные опции</summary>
-                <form class="options">
-                  <div>
-                    <b>Поиск в поле:</b>
-                    <label>
-                      <input type="checkbox" name="fields" value="p" checked />
-                      p
-                    </label>
-                   
-                  </div>
-                  <div>
-                    <b>Search options:</b>
-                    <label><input type="checkbox" name="prefix" value="true" checked /> Начинается</label>
-                    <label><input type="checkbox" name="fuzzy" value="true" checked /> Размытый</label>
-                  </div>
-                  <div>
-                    <b>Комбинирование условий:</b>
-                    <label><input type="radio" name="combineWith" value="OR" checked /> OR</label>
-                    <label><input type="radio" name="combineWith" value="AND" /> AND</label>
-                  </div>                
-                  </div>
-                </form>
-              </details>
+              </ul>            
             </div>
           </header>         
           <ul class="SongList">
@@ -296,9 +271,8 @@ const $search = document.querySelector('.Search')
 const $searchInput = document.querySelector('.Search input')
 const $clearButton = document.querySelector('.Search button.clear')
 const $songList = document.querySelector('.SongList')
-const $explanation = document.querySelector('.Explanation')
 const $suggestionList = document.querySelector('.SuggestionList')
-const $options = document.querySelector('.AdvancedOptions form')
+
 
 $app.classList.add('loading')
 let songsById = {}
@@ -388,18 +362,9 @@ $options.addEventListener('change', (event) => {
   renderSearchResults(results)
 })
 
-// Define functions and support variables
-const searchOptions = {
-  fuzzy: 0.2,
-  prefix: true,
-  fields: ['p'],
-  combineWith: 'OR',
-  filter: null
-}
 
 const getSearchResults = (query) => {
-  const searchOptions = getSearchOptions()
-  return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
+  return miniSearch.search(query).map(({ id }) => songsById[id])
 }
 
 const getSuggestions = (query) => {
@@ -413,8 +378,7 @@ const renderSearchResults = (results) => {
         <dt>Результат:</dt> <dd>${capitalize(p)}</dd>
        </dl>
     </li>`
-  }).join('\n')
-
+  }).join('\n')  
 
   if (results.length > 0) {
     $app.classList.add('hasResults')
@@ -450,16 +414,6 @@ const selectSuggestion = (direction) => {
   $searchInput.value = $suggestions[nextIndex].innerText
 }
 
-const getSearchOptions = () => {
-  const formData = new FormData($options)
-  const searchOptions = {}
-
-  searchOptions.fuzzy = formData.has('fuzzy') ? 0.2 : false
-  searchOptions.prefix = formData.has('prefix')
-  searchOptions.fields = formData.getAll('fields')
-  searchOptions.combineWith = formData.get('combineWith')
-
-  return searchOptions
 }
 
 const capitalize = (string) => string.replace(/(\b\w)/gi, (char) => char.toUpperCase())
