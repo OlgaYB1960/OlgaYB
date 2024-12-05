@@ -521,7 +521,7 @@ var arr = [
 console.log(arr);
 
   let MiniSearch = new MiniSearch({
-  fields: ['p.0.b.span.#text',p.1.a.strong.span.#text',p.2.a.strong.span.#text',p.3.a.strong.span.#text',p.4.a.strong.span.#text',p.5.a.strong.span.#text',p.6.a.strong.span.#text'],
+  fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
   extractField: (arr, fieldName) => {
     // Доступ к вложенным полям
     return fieldName.split('.').reduce((doc, key) => {
