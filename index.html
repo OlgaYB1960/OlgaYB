@@ -260,9 +260,7 @@ details, summary {
     <script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
    
      <script  type="text/javascript">
-const miniSearch = new MiniSearch({
-  fields: ['#text']
-})
+
        
 // Select DOM elements
        
@@ -521,6 +519,18 @@ var arr = [
 }
 ]
 console.log(arr);
+
+  let MiniSearch = new MiniSearch({
+  fields: ['p.0.b.span.#text',p.1.a.strong.span.#text',p.2.a.strong.span.#text',p.3.a.strong.span.#text',p.4.a.strong.span.#text',p.5.a.strong.span.#text',p.6.a.strong.span.#text'],
+  extractField: (arr, fieldName) => {
+    // Доступ к вложенным полям
+    return fieldName.split('.').reduce((doc, key) => {
+      const intKey = parseInt(key, 10)
+      return doc && doc[isNaN(intKey) ? key: intKey]
+    }, arr)
+  })
+})
+
 songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
 miniSearch.addAll(arr)
 $app.classList.remove('loading')
