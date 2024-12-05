@@ -528,7 +528,7 @@ console.log(arr);
       const intKey = parseInt(key, 10)
       return doc && doc[isNaN(intKey) ? key: intKey]
     }, arr)
-  })
+  }
 })
 
 songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
