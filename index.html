@@ -261,7 +261,7 @@ details, summary {
    
      <script  type="text/javascript">
 const miniSearch = new MiniSearch({
-  fields: ['p']
+  fields: ['#text']
 })
        
 // Select DOM elements
@@ -278,15 +278,246 @@ $app.classList.add('loading')
 let songsById = {}
 
 var arr = [
-  {
-    "id": 0,
-    "p": "Новостей пока нет.",
-   
+ {
+  "p": [
+    {
+      "b": {
+        "span": {
+          "@style": "color:black; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: x-large;",
+          "#text": "Руководство пользователя по работе в Личном кабинете (ЛК)"
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "1. Первичный вход в личный кабинет"
+          }
+        }
+      }
+    },
+    {
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top1))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "2. Настройка ЭЦП"
+          }
+        }
+      }
+    },
+    {
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top2))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3. Работа с поручениями в ЛК"
+          }
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "span": {
+        "@style": "mso-spacerun:yes; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;"
+      },
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top3))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3.1 Описание работы в табличной форме с группой случаев, входящих в поручение"
+          }
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "span": {
+        "@style": "mso-spacerun:yes; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;"
+      },
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top4))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3.2 Описание заполнения формы Экспертное заключение"
+          }
+        }
+      }
+    },
+    {
+      "span": {
+        "@style": "mso-spacerun:yes; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;"
+      },
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top5))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3.3 Завершение работы с ЭЗ в ЛК"
+          }
+        }
+      }
+    },
+    {
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top6))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3.4 Автоматическое и ручное формирование пакета документов (Заключение экспертизы, реестр заключений, Экспертное заключение) на стороне ПП 1С и отправка в ЛК эксперту на подписание ЭЦП."
+          }
+        }
+      }
+    },
+    {
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top7))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3.5 Внесение изменений в Экспертное заключение после перевода в статус «Выполнено» -перевод ЭЗ в статус «Возвращено в работу» со стороны ПП 1С"
+          }
+        }
+      }
+    },
+    {
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top8))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "3.6 Отчеты"
+          }
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top9))",
+        "strong": {
+          "span": {
+            "@style": "font-size: large; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif;",
+            "#text": "4. Выход из ЛК"
+          }
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top10))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "5. Повторный вход в ЛК"
+          }
+        }
+      }
+    },
+    {
+      "a": {
+        "@href": "javascript:void(scrollIntoView(#top11))",
+        "strong": {
+          "span": {
+            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+            "#text": "6. Руководство пользователя"
+          }
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "br": [
+        {
+          "@class": "ProseMirror-trailingBreak"
+        },
+        {
+          "@class": "ProseMirror-trailingBreak"
+        },
+        {
+          "@class": "ProseMirror-trailingBreak"
+        },
+        {
+          "@class": "ProseMirror-trailingBreak"
+        },
+        {
+          "@class": "ProseMirror-trailingBreak"
+        },
+        {
+          "@class": "ProseMirror-trailingBreak"
+        }
+      ]
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "b": {
+        "u": {
+          "span": {
+            "@style": "color:black; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: x-large;",
+            "#text": "1. Первичный вход в личный кабинет"
+          }
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "span": [
+        {
+          "@style": "font-size:10.0pt;font-family:&quot;Times New Roman&quot;,serif;color:black"
+        },
+        {
+          "@style": "color:black; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+          "#text": "Первичный вход в ЛК происходит только по ссылке на электронной почте, врачу-эксперту приходит с��общение"
+        }
+      ]
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "span": {
+        "@style": "color:black; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+        "#text": "с ссылкой"
+      },
+      "b": {
+        "span": {
+          "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+          "#text": "«перейти в личный кабинет»"
+        }
+      }
+    },
+    {
+      "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+      "@class": "MsoNormal",
+      "span": {
+        "@style": "font-size:10.0pt;font-family:&quot;Times New Roman&quot;,serif"
+      }
+    }
+  ],
+  "div": {
+    "@id": "#top"
   },
-  {
-    "id": 1,
-    "p": "оооооодддджжжж Новости есть"
-  }
+  "#text": [
+    "'",
+    "'"
+  ]
+}
 ]
 console.log(arr);
 songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
@@ -359,7 +590,7 @@ $app.addEventListener('click', (event) => {
 const searchOptions = {
   fuzzy: 0.2,
   prefix: true,
-  fields: ['p'],
+  fields: ['#text'],
   combineWith: 'OR',
   filter: null
 }
@@ -421,7 +652,7 @@ const getSearchOptions = () => {
   const searchOptions = {}
   searchOptions.fuzzy =  0.2 
   searchOptions.prefix = true
-  searchOptions.fields = ['p']
+  searchOptions.fields = ['#text']
   searchOptions.combineWith = 'OR' 
   searchOptions.filter = null
   return searchOptions
