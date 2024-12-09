@@ -541,9 +541,9 @@ let miniSearch = new MiniSearch({
   fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
   extractField: (arr, fieldName) => {
    
-   // songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key], arr)
-    songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
-  
+   songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key], arr)
+    //songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
+  return songsById
   }
 })
        
@@ -625,7 +625,8 @@ const searchOptions = {
        
 const getSearchResults = (query) => {
    const searchOptions = getSearchOptions()
-  return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
+  return MiniSearch.getDefault('extractField')
+    //miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
 }
 
 const getSuggestions = (query) => {
