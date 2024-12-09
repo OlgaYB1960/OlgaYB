@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+turn<!DOCTYPE html>
 <html>
   <head>
     <title>MiniSearch Пример</title>
@@ -542,8 +542,8 @@ let miniSearch = new MiniSearch({
   extractField: (arr, fieldName) => {
    
    // songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key], arr)
-    songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
-    return songsById
+    return arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
+  
   }
 })
        
