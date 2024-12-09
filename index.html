@@ -1,4 +1,4 @@
-turn<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>MiniSearch Пример</title>
@@ -617,7 +617,7 @@ $app.addEventListener('click', (event) => {
 const searchOptions = {
   fuzzy: 0.2,
   prefix: true,
-  fields: ['#text'],
+  fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
   combineWith: 'OR',
   filter: null
 }
@@ -625,8 +625,8 @@ const searchOptions = {
        
 const getSearchResults = (query) => {
    const searchOptions = getSearchOptions()
-  return MiniSearch.getDefault('extractField')
-    //miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
+// return MiniSearch.getDefault('extractField')
+return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
 }
 
 const getSuggestions = (query) => {
