@@ -616,7 +616,7 @@ $app.addEventListener('click', (event) => {
 const searchOptions = {
   fuzzy: 0.2,
   prefix: true,
-  fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
+  fields: ['#text'],
   combineWith: 'OR',
   filter: null
 }
@@ -678,7 +678,7 @@ const getSearchOptions = () => {
   const searchOptions = {}
   searchOptions.fuzzy =  0.2 
   searchOptions.prefix = true
-  searchOptions.fields = ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text']
+  searchOptions.fields = ['#text']
   searchOptions.combineWith = 'OR' 
   searchOptions.filter = null
   return searchOptions
