@@ -640,7 +640,7 @@ return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
 }
 
 const getSuggestions = (query) => {
-  return miniSearch.autoSuggest(query, { boost: { p: 5 } })   
+  return miniSearch.autoSuggest(query)   
 }
 
 
