@@ -539,14 +539,24 @@ console.log(arr);
 
 let miniSearch = new MiniSearch({
   fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
-  extractField: (arr, fieldName) => {
-   
-   songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key], arr)
-    //songsById = arr.reduce((byId, song) => {byId[song.id] = song; return byId},{})
-  return songsById
+  extractField: (doc, fieldName) => {
+    const parts = fieldName.split(".");
+    let value = doc;
+    for (const part of parts) {
+      if (value && value.hasOwnProperty(part)) {
+        value = value[part];
+      } else {
+        return ""; // Handle missing fields gracefully
+      }
+      if (typeof value === 'object' && value.hasOwnProperty('#text')) {
+        value = value['#text'];
+      }
+    }
+    return value;
   }
-})
-       
+});
+
+    
 
 miniSearch.addAll(arr)
 $app.classList.remove('loading')
@@ -633,22 +643,24 @@ const getSuggestions = (query) => {
   return miniSearch.autoSuggest(query, { boost: { p: 5 } })   
 }
 
-const renderSearchResults = (results) => {
-  $songList.innerHTML = results.map(({ p }) => {
-    return `<li class="Song">    
-      <dl>
-        <dt>Результат:</dt> <dd>${capitalize(p)}</dd>
-       </dl>
-    </li>`
-  }).join('\n')  
 
-  if (results.length > 0) {
+const renderSearchResults = (results) => {
+  $songList.innerHTML = '';
+  results.forEach(result => {
+    const li = document.createElement('li');
+    li.textContent = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
+    $songList.appendChild(li);
+  });
+
+   if (results.length > 0) {
     $app.classList.add('hasResults')
   } else {
     $app.classList.remove('hasResults')
   }
-}
+};
 
+
+       
 const renderSuggestions = (suggestions) => {
   $suggestionList.innerHTML = suggestions.map(({ suggestion }) => {
     return `<li class="Suggestion">${suggestion}</li>`
