@@ -537,25 +537,12 @@ var arr = [
 ]
 console.log(arr);
 
-let miniSearch = new MiniSearch({
+  let miniSearch = new MiniSearch({
   fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
-  extractField: (doc, fieldName) => {
-    const parts = fieldName.split(".");
-    let value = doc;
-    for (const part of parts) {
-      if (value && value.hasOwnProperty(part)) {
-        value = value[part];
-      } else {
-        return ""; // Handle missing fields gracefully
-      }
-      if (typeof value === 'object' && value.hasOwnProperty('#text')) {
-        value = value['#text'];
-      }
-    }
-    return value;
-  }
-});
-
+  extractField: (arr, fieldName) => {   
+   songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key], arr)
+  return songsById
+  }}) 
     
 
 miniSearch.addAll(arr)
