@@ -665,10 +665,10 @@ const searchOptions = {
 
 
 const getSearchResults = (query) => {
-           return miniSearch.search(query);
+          const searchOptions = getSearchOptions()
+           return miniSearch.search(query, searchOptions);
          };
-
-       
+   
 
 const getSuggestions = (query) => {
   return miniSearch.autoSuggest(query)   
