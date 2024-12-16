@@ -538,7 +538,23 @@ var arr = [
 console.log(arr);
 
   let miniSearch = new MiniSearch({
-  fields: ['p.0.b.span.#text','p.1.a.strong.span.#text','p.2.a.strong.span.#text','p.3.a.strong.span.#text','p.4.a.strong.span.#text','p.5.a.strong.span.#text','p.6.a.strong.span.#text'],
+  fields: ['p.0.b.span.#text',
+           'p.1.a.strong.span.#text',
+           'p.2.a.strong.span.#text',
+           'p.3.a.strong.span.#text',
+           'p.4.a.strong.span.#text',
+           'p.5.a.strong.span.#text',
+           'p.6.a.strong.span.#text',
+           'p.7.a.strong.span.#text',
+           'p.8.a.strong.span.#text,
+           'p.9.a.strong.span.#text',
+           'p.10.a.strong.span.#text',
+           'p.11.a.strong.span.#text',
+           'p.12.a.strong.span.#text',
+           'p.14.b.u.span.#text',
+           'p.15.span.#text',
+           'p.16.span.#text',
+           'p.16.b.span.#text']
   extractField: (doc, fieldName) => {   
    songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key],doc)
   return songsById
