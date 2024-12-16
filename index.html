@@ -552,7 +552,9 @@ console.log(arr);
           'p.11.a.strong.span.#text',
           'p.12.a.strong.span.#text',
           'p.14.b.u.span.#text',
-          'p.15.span.1.#text'],
+          'p.15.span.1.#text',
+          'p.16.span.#text',
+          'p.16.b.span.#text'],
   extractField: (doc, fieldName) => {   
    songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key],doc)
   return songsById
