@@ -537,8 +537,8 @@ var arr = [
 ]
 console.log(arr);
 
-  let miniSearch = new MiniSearch({
-  fields: ['p.0.b.span.#text',
+     let miniSearch = new MiniSearch({
+            fields: ['p.0.b.span.#text',
            'p.1.a.strong.span.#text',
            'p.2.a.strong.span.#text',
            'p.3.a.strong.span.#text',
@@ -555,11 +555,23 @@ console.log(arr);
           'p.15.span.1.#text',
           'p.16.span.#text',
           'p.16.b.span.#text'],
-  extractField: (doc, fieldName) => {   
-   songsById =fieldName.split('.').reduce((doc, key) => doc && doc[key],doc)
-  return songsById
-  }}) 
-    
+            storeFields: ["p"], 
+            extractField: (doc, fieldName) => {
+                const parts = fieldName.split(".");
+                let value = doc;
+                for (const part of parts) {
+                   if (value && value.hasOwnProperty(part)) {
+                       value = value[part];
+                   } else {
+                       return ""; // Handle missing fields gracefully
+                    }
+                   if (typeof value === 'object' && value.hasOwnProperty('#text')) {
+                       value = value['#text'];
+                    }
+                }
+                return value;
+            }
+        });
 
 miniSearch.addAll(arr)
 $app.classList.remove('loading')
@@ -651,12 +663,12 @@ const searchOptions = {
   filter: null
 }
 
-       
+
 const getSearchResults = (query) => {
-   const searchOptions = getSearchOptions()
-// return MiniSearch.getDefault('extractField')
-return miniSearch.search(query, searchOptions).map(({ id }) => songsById[id])
-}
+           return miniSearch.search(query);
+         };
+
+       
 
 const getSuggestions = (query) => {
   return miniSearch.autoSuggest(query)   
