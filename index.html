@@ -4,7 +4,6 @@
     <title>MiniSearch Example</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
-    <link rel="shortcut icon" href="#">
     <style>
         #results {
             list-style: none;
@@ -26,7 +25,7 @@
     <input type="text" class="Search" placeholder="Search...">
      <ul id="suggestions"></ul>
     <ul id="results"></ul>
-    <script  type="text/javascript">
+    <script>
         const $searchInput = document.querySelector(".Search");
         const $results = document.getElementById("results");
         const $suggestions = document.getElementById("suggestions");
@@ -83,21 +82,26 @@
 
         let miniSearch = new MiniSearch({
             fields: ["p.0.b.span.#text", "p.1.a.strong.span.#text", "p.2.a.strong.span.#text", "p.3.a.strong.span.#text"],
-            storeFields: ["p"], // Tell miniSearch to store the original content of the "p" field
+            storeFields: ["p"],
             extractField: (doc, fieldName) => {
+              try {
                 const parts = fieldName.split(".");
                 let value = doc;
                 for (const part of parts) {
-                   if (value && value.hasOwnProperty(part)) {
-                       value = value[part];
-                   } else {
-                       return ""; // Handle missing fields gracefully
-                    }
-                   if (typeof value === 'object' && value.hasOwnProperty('#text')) {
-                       value = value['#text'];
-                    }
+                  if (value && value.hasOwnProperty(part)) {
+                    value = value[part];
+                  } else {
+                    return ""; // Handle missing fields gracefully
+                  }
+                  if (typeof value === 'object' && value.hasOwnProperty('#text')) {
+                    value = value['#text'];
+                  }
                 }
                 return value;
+                } catch (error) {
+                  console.error(`Error extracting field ${fieldName}:`, error);
+                    return ""; // Return empty string on error
+              }
             }
         });
         
@@ -134,7 +138,7 @@
              $suggestions.innerHTML = ""; // Clear previous suggestions
               suggestions.forEach(suggestion => {
                 const li = document.createElement('li');
-                li.textContent = suggestion.term;
+                li.textContent = suggestion.suggestion;
                 $suggestions.appendChild(li);
               });
          };
