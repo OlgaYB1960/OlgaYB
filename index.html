@@ -668,12 +668,7 @@ const getSearchResults = (query) => {
           const searchOptions = getSearchOptions()
            return miniSearch.search(query, searchOptions);
          };
-   
-
-const getSuggestions = (query) => {
-  return miniSearch.autoSuggest(query)   
-}
-       
+          
 const getSuggestions = (query) => {
             return miniSearch.autoSuggest(query, { boost: { 
            'p.0.b.span.#text':18,
