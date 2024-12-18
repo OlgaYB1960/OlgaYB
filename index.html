@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MiniSearch Пример</title>
+    <title>MiniSearch Пример1</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
    <script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
  
@@ -28,115 +28,115 @@
      <ul id="suggestions"></ul>
     <ul id="results"></ul>
     <script type="text/javascript">
-        const $searchInput = document.querySelector(".Search");
-        const $results = document.getElementById("results");
-        const $suggestions = document.getElementById("suggestions");
-        
-        var arr = [{
-            "id": 123456, "p": [{
-                "b": {
-                    "span": {
-                        "id": 0,
-                        "@style": "color:black; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: x-large;",
-                        "#text": "Руководство пользователя по работе в Личном кабинете (ЛК)"
-                    }
-                }
-            },
-            {
-                "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
-                "@class": "MsoNormal",
-                "a": {
-                    "@href": "javascript:void(scrollIntoView(#top))",
-                    "strong": {
-                        "span": {
-                            "id": 1,
-                            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
-                            "#text": "1. Первичный вход в личный кабинет"
-                        }
-                    }
-                }
-            },
-            {
-                "a": {
-                    "@href": "javascript:void(scrollIntoView(#top1))",
-                    "strong": {
-                        "span": {
-                            "id": 2,
-                            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
-                            "#text": "2. Настройка ЭЦП"
-                        }
-                    }
-                }
-            },
-            {
-                "a": {
-                    "@href": "javascript:void(scrollIntoView(#top2))",
-                    "strong": {
-                        "span": {
-                            "id": 3,
-                            "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
-                            "#text": "3. Работа с поручениями в ЛК"
-                        }
-                    }
-                }
-            }]
-        }];
+      const $searchInput = document.querySelector(".Search");
+      const $results = document.getElementById("results");
+      const $suggestions = document.getElementById("suggestions");
 
-        let miniSearch = new MiniSearch({
-            fields: ["p.0.b.span.#text", "p.1.a.strong.span.#text", "p.2.a.strong.span.#text", "p.3.a.strong.span.#text"],
-            storeFields: ["p"],
-            extractField: (doc, fieldName) => {
-              try {
-                const parts = fieldName.split(".");
-                let value = doc;
-                for (const part of parts) {
-                  if (value && value.hasOwnProperty(part)) {
-                    value = value[part];
-                  } else {
-                    return ""; // Handle missing fields gracefully
-                  }
-                  if (typeof value === 'object' && value.hasOwnProperty('#text')) {
-                    value = value['#text'];
-                  }
-                }
-                return value;
-                } catch (error) {
-                  console.error(`Error extracting field ${fieldName}:`, error);
-                    return ""; // Return empty string on error
+      var arr = [{
+          "id": 123456, "p": [{
+            "b": {
+              "span": {
+                "id": 0,
+                "@style": "color:black; font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: x-large;",
+                "#text": "Руководство пользователя по работе в Личном кабинете (ЛК)"
               }
             }
+          },
+          {
+            "@style": "border:none;mso-border-bottom-alt:solid windowtext .75pt;padding:0cm;mso-padding-alt:0cm 0cm 12.0pt 0cm",
+            "@class": "MsoNormal",
+            "a": {
+              "@href": "javascript:void(scrollIntoView(#top))",
+              "strong": {
+                "span": {
+                  "id": 1,
+                  "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+                  "#text": "1. Первичный вход в личный кабинет"
+                }
+              }
+            }
+          },
+          {
+            "a": {
+              "@href": "javascript:void(scrollIntoView(#top1))",
+              "strong": {
+                "span": {
+                  "id": 2,
+                  "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+                  "#text": "2. Настройка ЭЦП"
+                }
+              }
+            }
+          },
+          {
+            "a": {
+              "@href": "javascript:void(scrollIntoView(#top2))",
+              "strong": {
+                "span": {
+                  "id": 3,
+                  "@style": "font-family: TimesNewRoman,&quot;Times New Roman&quot;,Times,Baskerville,Georgia,serif; font-size: large;",
+                  "#text": "3. Работа с поручениями в ЛК"
+                }
+              }
+            }
+          }]
+        }];
+
+       const flattenedData = arr.map(item => {
+        const flattenedItem = { ...item, text: [] };
+          
+        if(item.p && item.p[0]?.b?.span?.['#text']){
+            flattenedItem.text.push(item.p[0].b.span['#text'])
+        }
+        if(item.p && item.p[1]?.a?.strong?.span?.['#text']){
+            flattenedItem.text.push(item.p[1].a.strong.span['#text'])
+        }
+        if(item.p && item.p[2]?.a?.strong?.span?.['#text']){
+             flattenedItem.text.push(item.p[2].a.strong.span['#text'])
+         }
+        if(item.p && item.p[3]?.a?.strong?.span?.['#text']){
+              flattenedItem.text.push(item.p[3].a.strong.span['#text'])
+        }
+
+          flattenedItem.text = flattenedItem.text.join(" ")
+          return flattenedItem;
         });
-        
-        miniSearch.addAll(arr);
+
+
+        let miniSearch = new MiniSearch({
+          fields: ["text"], // Index only the "text" field
+          storeFields: ["p"] // Tell MiniSearch to store the original p structure
+        });
+
+        miniSearch.addAll(flattenedData);
 
         $searchInput.addEventListener("input", (event) => {
-            const query = $searchInput.value;
-            const results = (query.length > 0) ? getSearchResults(query) : [];
-            renderSearchResults(results);
-            const suggestions = (query.length > 0) ? getSuggestions(query) : [];
-           renderSuggestions(suggestions);
-
+          const query = $searchInput.value;
+          const results = (query.length > 0) ? getSearchResults(query) : [];
+          renderSearchResults(results);
+          const suggestions = (query.length > 0) ? getSuggestions(query) : [];
+          renderSuggestions(suggestions);
         });
-        
+
         const getSearchResults = (query) => {
-           return miniSearch.search(query);
-         };
-        
-         const getSuggestions = (query) => {
-            return miniSearch.autoSuggest(query, { boost: {  'p.0.b.span.#text': 5, 'p.1.a.strong.span.#text': 4, 'p.2.a.strong.span.#text': 3, 'p.3.a.strong.span.#text': 2 } });
-          };
+            return miniSearch.search(query);
+        };
+
+        const getSuggestions = (query) => {
+            return miniSearch.autoSuggest(query, { boost: { "text": 5 } });
+        };
 
         const renderSearchResults = (results) => {
-            $results.innerHTML = ""; // Clear previous results
+          $results.innerHTML = ""; // Clear previous results
             results.forEach(result => {
                 const li = document.createElement('li');
-                const text = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
+              const text = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
                 li.textContent = text
                 $results.appendChild(li);
             });
         };
         
-         const renderSuggestions = (suggestions) => {
+        const renderSuggestions = (suggestions) => {
              $suggestions.innerHTML = ""; // Clear previous suggestions
               suggestions.forEach(suggestion => {
                 const li = document.createElement('li');
