@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MiniSearch Пример1</title>
+    <title>MiniSearch Пример2</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
    <script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
  
 <link rel="shortcut icon" href="#">
-    <style>
+ <style>
         #results {
             list-style: none;
             padding: 0;
@@ -27,7 +27,7 @@
     <input type="text" class="Search" placeholder="Search...">
      <ul id="suggestions"></ul>
     <ul id="results"></ul>
-    <script type="text/javascript">
+   <script  type="text/javascript">
       const $searchInput = document.querySelector(".Search");
       const $results = document.getElementById("results");
       const $suggestions = document.getElementById("suggestions");
@@ -83,29 +83,27 @@
         }];
 
        const flattenedData = arr.map(item => {
-        const flattenedItem = { ...item, text: [] };
-          
-        if(item.p && item.p[0]?.b?.span?.['#text']){
-            flattenedItem.text.push(item.p[0].b.span['#text'])
-        }
-        if(item.p && item.p[1]?.a?.strong?.span?.['#text']){
-            flattenedItem.text.push(item.p[1].a.strong.span['#text'])
-        }
-        if(item.p && item.p[2]?.a?.strong?.span?.['#text']){
-             flattenedItem.text.push(item.p[2].a.strong.span['#text'])
-         }
-        if(item.p && item.p[3]?.a?.strong?.span?.['#text']){
-              flattenedItem.text.push(item.p[3].a.strong.span['#text'])
-        }
+            const flattenedItem = { ...item, text: [] };
+            if(item.p && item.p[0]?.b?.span?.['#text']){
+                flattenedItem.text.push({ index: 0, text: item.p[0].b.span['#text'] });
+            }
+            if(item.p && item.p[1]?.a?.strong?.span?.['#text']){
+                flattenedItem.text.push({ index: 1, text: item.p[1].a.strong.span['#text'] });
+            }
+            if(item.p && item.p[2]?.a?.strong?.span?.['#text']){
+                flattenedItem.text.push({ index: 2, text: item.p[2].a.strong.span['#text'] });
+            }
+             if(item.p && item.p[3]?.a?.strong?.span?.['#text']){
+                flattenedItem.text.push({ index: 3, text: item.p[3].a.strong.span['#text'] });
+            }
+            return flattenedItem;
+          });
 
-          flattenedItem.text = flattenedItem.text.join(" ")
-          return flattenedItem;
-        });
 
 
         let miniSearch = new MiniSearch({
-          fields: ["text"], // Index only the "text" field
-          storeFields: ["p"] // Tell MiniSearch to store the original p structure
+          fields: ["text.text"],
+            storeFields: ["p"] // Store the original "p" array
         });
 
         miniSearch.addAll(flattenedData);
@@ -123,14 +121,14 @@
         };
 
         const getSuggestions = (query) => {
-            return miniSearch.autoSuggest(query, { boost: { "text": 5 } });
+            return miniSearch.autoSuggest(query, { boost: { "text.text": 5 } });
         };
 
         const renderSearchResults = (results) => {
-          $results.innerHTML = ""; // Clear previous results
+            $results.innerHTML = ""; // Clear previous results
             results.forEach(result => {
                 const li = document.createElement('li');
-              const text = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
+                const text = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
                 li.textContent = text
                 $results.appendChild(li);
             });
