@@ -687,8 +687,7 @@ const getSuggestions = (query) => {
           'p.14.b.u.span.#text':4,
           'p.15.span.1.#text':3,
           'p.16.span.#text':2,
-          'p.16.b.span.#text':1  
-            } });
+          'p.16.b.span.#text':1 } });
           };
 
 const renderSearchResults = (results) => {
@@ -698,12 +697,6 @@ const renderSearchResults = (results) => {
     li.textContent = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
     $songList.appendChild(li);
   });
-
-   if (results.length > 0) {
-    $app.classList.add('hasResults')
-  } else {
-    $app.classList.remove('hasResults')
-  }
 };
 
  const renderSuggestions = (suggestions) => {
@@ -714,13 +707,6 @@ const renderSearchResults = (results) => {
                 $suggestions.appendChild(li);
               });
          };
-
-  if (suggestions.length > 0) {
-    $app.classList.add('hasSuggestions')
-  } else {
-    $app.classList.remove('hasSuggestions')
-  }
-}
 
 const selectSuggestion = (direction) => {
   const $suggestions = document.querySelectorAll('.Suggestion')
