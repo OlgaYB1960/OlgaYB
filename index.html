@@ -673,7 +673,28 @@ const getSearchResults = (query) => {
 const getSuggestions = (query) => {
   return miniSearch.autoSuggest(query)   
 }
-
+       
+const getSuggestions = (query) => {
+            return miniSearch.autoSuggest(query, { boost: { 
+           'p.0.b.span.#text':18,
+           'p.1.a.strong.span.#text':16,
+           'p.2.a.strong.span.#text':15,
+           'p.3.a.strong.span.#text':14,
+           'p.4.a.strong.span.#text':13,
+           'p.5.a.strong.span.#text':12,
+           'p.6.a.strong.span.#text':11,
+           'p.7.a.strong.span.#text':10,
+          'p.8.a.strong.span.#text':9,
+          'p.9.a.strong.span.#text':8,
+          'p.10.a.strong.span.#text':7,
+          'p.11.a.strong.span.#text':6,
+          'p.12.a.strong.span.#text':5,
+          'p.14.b.u.span.#text':4,
+          'p.15.span.1.#text':3,
+          'p.16.span.#text':2,
+          'p.16.b.span.#text':1  
+            } });
+          };
 
 const renderSearchResults = (results) => {
   $songList.innerHTML = '';
@@ -690,13 +711,14 @@ const renderSearchResults = (results) => {
   }
 };
 
-
-       
-const renderSuggestions = (suggestions) => {
-  $suggestionList.innerHTML = suggestions.map(({ suggestion }) => {
-    return `<li class="Suggestion">${suggestion}</li>`
-  }).join('\n')
-  
+ const renderSuggestions = (suggestions) => {
+             $suggestions.innerHTML = ""; // Clear previous suggestions
+              suggestions.forEach(suggestion => {
+                const li = document.createElement('li');
+                li.textContent = suggestion.term;
+                $suggestions.appendChild(li);
+              });
+         };
 
   if (suggestions.length > 0) {
     $app.classList.add('hasSuggestions')
