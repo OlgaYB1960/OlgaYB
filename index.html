@@ -151,7 +151,7 @@ details, summary {
   margin-top: 0;
   margin-bottom: 0.15em;
 }
-.SuggestionList {
+.Suggestions {
   display: none;
   list-style: none;
   padding: 0;
@@ -166,9 +166,7 @@ details, summary {
   left: 0;
   right: 0;
 }
-.hasSuggestions .SuggestionList {
-  display: block;
-}
+
 .Suggestion {
   padding: 0.5em 1em;
   border-bottom: 1px solid #eee;
@@ -248,7 +246,7 @@ details, summary {
                 <button class="clear">&times;</button>
               </div>
 
-              <ul class="SuggestionList">
+              <ul class="suggestions">
               </ul>            
             </div>
           </header>         
@@ -269,7 +267,7 @@ const $search = document.querySelector('.Search')
 const $searchInput = document.querySelector('.Search input')
 const $clearButton = document.querySelector('.Search button.clear')
 const $songList = document.querySelector('.SongList')
-const $suggestionList = document.querySelector('.SuggestionList')
+const $suggestions = document.querySelector('.suggestions')
 
 
 $app.classList.add('loading')
@@ -599,20 +597,7 @@ $clearButton.addEventListener('click', () => {
   renderSuggestions([])
 })
 
-// Clicking on a suggestion selects it
-$suggestionList.addEventListener('click', (event) => {
-  const $suggestion = event.target
 
-  if ($suggestion.classList.contains('Suggestion')) {
-    const query = $suggestion.innerText.trim()
-    $searchInput.value = query
-    $searchInput.focus()
-
-    const results = getSearchResults(query)
-    renderSearchResults(results)
-    renderSuggestions([])
-  }
-})
 
 // Pressing up/down/enter key while on search bar navigates through suggestions
 $search.addEventListener('keydown', (event) => {
