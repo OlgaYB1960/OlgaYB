@@ -4,7 +4,6 @@
     <title>MiniSearch Пример</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
    <script src="https://cdn.jsdelivr.net/npm/minisearch@7.1.0/dist/umd/index.min.js"></script>
- 
 <link rel="shortcut icon" href="#">
     <style>
         #results {
@@ -27,7 +26,8 @@
     <input type="text" class="Search" placeholder="Search...">
      <ul id="suggestions"></ul>
     <ul id="results"></ul>
-        <script  type="text/javascript">
+   <script  type="text/javascript">
+
       const $searchInput = document.querySelector(".Search");
       const $results = document.getElementById("results");
       const $suggestions = document.getElementById("suggestions");
@@ -84,21 +84,20 @@
 
        const flattenedData = arr.map(item => {
           const flattenedItem = { ...item,
-               text0: item.p[0]?.b?.span?.['#text'] || '',
-               text1: item.p[1]?.a?.strong?.span?.['#text'] || '',
-               text2: item.p[2]?.a?.strong?.span?.['#text'] || '',
-               text3: item.p[3]?.a?.strong?.span?.['#text'] || ''
+               text0: item.p[0]?.b?.span?.['#text'] ? { text: item.p[0]?.b?.span?.['#text'], index: 0} : null,
+               text1: item.p[1]?.a?.strong?.span?.['#text'] ? { text: item.p[1]?.a?.strong?.span?.['#text'], index: 1 } : null,
+               text2: item.p[2]?.a?.strong?.span?.['#text'] ? { text: item.p[2]?.a?.strong?.span?.['#text'], index: 2 } : null,
+               text3: item.p[3]?.a?.strong?.span?.['#text'] ? { text: item.p[3]?.a?.strong?.span?.['#text'], index: 3 }: null
             };
            return flattenedItem;
          });
 
+         let miniSearch = new MiniSearch({
+           fields: ["text0.text", "text1.text", "text2.text", "text3.text"],
+             storeFields: ["p", "text0", "text1", "text2", "text3"]
+         });
 
-        let miniSearch = new MiniSearch({
-          fields: ["text0","text1", "text2", "text3"],
-            storeFields: ["p"]
-        });
-
-        miniSearch.addAll(flattenedData);
+         miniSearch.addAll(flattenedData);
 
         $searchInput.addEventListener("input", (event) => {
           const query = $searchInput.value;
@@ -112,28 +111,41 @@
             return miniSearch.search(query);
         };
 
-        const getSuggestions = (query) => {
-           return miniSearch.autoSuggest(query, { boost: { "text0": 5,"text1": 4,"text2": 3,"text3": 2} });
-        };
+       const getSuggestions = (query) => {
+         return miniSearch.autoSuggest(query, { boost: { "text0.text": 5, "text1.text": 4, "text2.text": 3, "text3.text": 2 } });
+       };
 
-         const renderSearchResults = (results) => {
+        const renderSearchResults = (results) => {
             $results.innerHTML = ""; // Clear previous results
             results.forEach(result => {
-                const li = document.createElement('li');
-                const text = result.p.map(item => item.a?.strong?.span?.['#text'] || item.b?.span?.['#text']).join('\n');
-                li.textContent = text;
-                $results.appendChild(li);
+              const li = document.createElement('li');
+              let displayedText = "";
+                if (result.text0 && result.text0.text && result.text0.index != null) {
+                  displayedText = result.text0.text
+                }
+                if (result.text1 && result.text1.text && result.text1.index != null) {
+                    displayedText =  result.text1.text;
+                }
+                if (result.text2 && result.text2.text && result.text2.index != null) {
+                    displayedText =  result.text2.text;
+                }
+                if (result.text3 && result.text3.text && result.text3.index != null) {
+                   displayedText =  result.text3.text
+                }
+              li.textContent = displayedText;
+              $results.appendChild(li);
             });
         };
-        
-         const renderSuggestions = (suggestions) => {
-             $suggestions.innerHTML = ""; // Clear previous suggestions
-              suggestions.forEach(suggestion => {
+
+        const renderSuggestions = (suggestions) => {
+            $suggestions.innerHTML = ""; // Clear previous suggestions
+            suggestions.forEach(suggestion => {
                 const li = document.createElement('li');
                 li.textContent = suggestion.suggestion;
                 $suggestions.appendChild(li);
-              });
-         };
+            });
+        };
+
     </script>
 </body>
 </html>
