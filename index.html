@@ -442,8 +442,8 @@
              flattenedItems.push({
                 ...item,
                  id: item.id + '_15',
-                text: item.p[15].span[1].['#text'],
-                html: `<p><span style="${item.p[15].span[1].["@style"]}">${item.p[15].span[1].['#text']}</span></p>`,
+                text: item.p[15].span[1]?.['#text'],
+                html: `<p><span style="${item.p[15].span[1]?.["@style"]}">${item.p[15].span[1]?.['#text']}</span></p>`,
                textIndex:14
            });
         }
