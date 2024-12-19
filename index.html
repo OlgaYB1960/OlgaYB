@@ -357,8 +357,55 @@
                textIndex:5
            });
         }
-
+         
+ if(item.p && item.p[6]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_6',
+                text: item.p[6].a.strong.span['#text'],
+                html: `<p><a href="${item.p[6].a["@href"]}"><strong ><span style="${item.p[6].a.strong.span["@style"]}">${item.p[6].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:6
+           });
+        }
           
+ if(item.p && item.p[7]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_7',
+                text: item.p[7].a.strong.span['#text'],
+                html: `<p><a href="${item.p[7].a["@href"]}"><strong ><span style="${item.p[7].a.strong.span["@style"]}">${item.p[7].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:7
+           });
+        }
+        if(item.p && item.p[8]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_8',
+                text: item.p[8].a.strong.span['#text'],
+                html: `<p><a href="${item.p[8].a["@href"]}"><strong ><span style="${item.p[8].a.strong.span["@style"]}">${item.p[8].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:8
+           });
+        }
+
+          if(item.p && item.p[9]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_9',
+                text: item.p[9].a.strong.span['#text'],
+                html: `<p><a href="${item.p[9].a["@href"]}"><strong ><span style="${item.p[9].a.strong.span["@style"]}">${item.p[9].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:9
+           });
+        }
+
+             if(item.p && item.p[10]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_10',
+                text: item.p[10].a.strong.span['#text'],
+                html: `<p><a href="${item.p[10].a["@href"]}"><strong ><span style="${item.p[10].a.strong.span["@style"]}">${item.p[10].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:9
+           });
+        }  
         return flattenedItems;
        });
 
