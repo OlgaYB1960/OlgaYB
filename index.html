@@ -426,27 +426,7 @@
                textIndex:11
            });
         }
-        
-            if(item.p && item.p[14]?.b?.u?.span?.['#text']){
-             flattenedItems.push({
-                ...item,
-                 id: item.id + '_14',
-                text: item.p[14].b.u.span['#text'],
-                html: `<p><a href="${item.p[14].a["@href"]}"><span style="${item.p[14].b.u.span["@style"]}">${item.p[14].b.u.span['#text']}</span></a></p>`,
-               textIndex:13
-           });
-        
-        }
-          
-     if(item.p && item.p[15]?.span?.1?.['#text']){
-             flattenedItems.push({
-                ...item,
-                 id: item.id + '_15',
-                text: item.p[15].span.1.['#text'],
-                html: `<p><a href="${item.p[15].a["@href"]}"><span style="${item.p[15].span.1.["@style"]}">${item.p[15].span.1.['#text']}</span></a></p>`,
-               textIndex:14
-           });
-        }
+
           
         return flattenedItems;
        });
