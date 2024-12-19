@@ -338,7 +338,25 @@
                textIndex:3
            });
         }
+   if(item.p && item.p[4]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_4',
+                text: item.p[4].a.strong.span['#text'],
+                html: `<p><a href="${item.p[4].a["@href"]}"><strong ><span style="${item.p[4].a.strong.span["@style"]}">${item.p[4].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:4
+           });
+        }
 
+ if(item.p && item.p[5]?.a?.strong?.span?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_5',
+                text: item.p[5].a.strong.span['#text'],
+                html: `<p><a href="${item.p[5].a["@href"]}"><strong ><span style="${item.p[5].a.strong.span["@style"]}">${item.p[5].a.strong.span['#text']}</span></strong></a></p>`,
+               textIndex:5
+           });
+        }
 
           
         return flattenedItems;
