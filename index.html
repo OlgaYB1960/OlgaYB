@@ -436,6 +436,18 @@
            });
         
         }
+
+               
+     if(item.p && item.p[15]?.span?.1?.['#text']){
+             flattenedItems.push({
+                ...item,
+                 id: item.id + '_15',
+                text: item.p[15].span.1.['#text'],
+                html: `<p><a href="${item.p[15].a["@href"]}"><span style="${item.p[15].span.1.["@style"]}">${item.p[15].span.1.['#text']}</span></a></p>`,
+               textIndex:14
+           });
+        }
+          
           
         return flattenedItems;
        });
