@@ -150,7 +150,7 @@ details, summary {
   margin-top: 0;
   margin-bottom: 0.15em;
 }
-.SuggestionList {
+.suggestions {
   display: none;
   list-style: none;
   padding: 0;
@@ -165,7 +165,7 @@ details, summary {
   left: 0;
   right: 0;
 }
-.hasSuggestions .SuggestionList {
+.hasSuggestions .suggestions {
   display: block;
 }
 .Suggestion {
@@ -269,6 +269,7 @@ const $searchInput = document.querySelector('.Search input')
 const $clearButton = document.querySelector('.Search button.clear')
 const $results = document.querySelector('.results')
 const $suggestions = document.querySelector('.suggestions')
+const $explanation = document.querySelector('.Explanation')
 
 
 $app.classList.add('loading')
