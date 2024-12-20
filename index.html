@@ -719,9 +719,9 @@ $app.classList.add('loading')
 
         $searchInput.addEventListener("input", (event) => {
           const query = $searchInput.value;
-          const results = (query.length > 0) ? getSearchResults(query) : [];
+          const results = (query.length > 1) ? getSearchResults(query) : [];
           renderSearchResults(results);
-          const suggestions = (query.length > 0) ? getSuggestions(query) : [];
+          const suggestions = (query.length > 1) ? getSuggestions(query) : [];
           renderSuggestions(suggestions);
         });
 
@@ -790,6 +790,11 @@ $app.addEventListener('click', (event) => {
            li.innerHTML = result.html;
            $results.appendChild(li);
          });
+        if (results.length > 1) {
+    $app.classList.add('hasResults')
+  } else {
+    $app.classList.remove('hasResults')
+  }
         };
         
        const renderSuggestions = (suggestions) => {
@@ -799,6 +804,11 @@ $app.addEventListener('click', (event) => {
                 li.textContent = suggestion.suggestion;
                 $suggestions.appendChild(li);
             });
+         if (suggestions.length > 0) {
+    $app.classList.add('hasSuggestions')
+  } else {
+    $app.classList.remove('hasSuggestions')
+  }
         };
 
        
