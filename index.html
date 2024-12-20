@@ -247,11 +247,11 @@ details, summary {
                 <button class="clear">&times;</button>
               </div>
 
-              <ul class="results">
+              <ul class="suggestions">
               </ul>            
             </div>
           </header>         
-          <ul class="SongList">
+          <ul class="results">
           </ul>
         </article>
       </div>
@@ -268,7 +268,7 @@ const $search = document.querySelector('.Search')
 const $searchInput = document.querySelector('.Search input')
 const $clearButton = document.querySelector('.Search button.clear')
 const $results = document.querySelector('.results')
-const $suggestionList = document.querySelector('.SuggestionList')
+const $suggestions = document.querySelector('.suggestions')
 
 
 $app.classList.add('loading')
@@ -711,6 +711,8 @@ $app.classList.add('loading')
         });
 
         miniSearch.addAll(flattenedData);
+        $app.classList.remove('loading') 
+       
 
         $searchInput.addEventListener("input", (event) => {
           const query = $searchInput.value;
