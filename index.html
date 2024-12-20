@@ -800,6 +800,24 @@ $app.addEventListener('click', (event) => {
                 $suggestions.appendChild(li);
             });
         };
+
+       
+const selectSuggestion = (direction) => {
+  const $suggestions = document.querySelectorAll('.Suggestion')
+  const $selected = document.querySelector('.Suggestion.selected')
+  const index = Array.from($suggestions).indexOf($selected)
+
+  if (index > -1) {
+    $suggestions[index].classList.remove('selected')
+  }
+
+  const nextIndex = Math.max(Math.min(index + direction, $suggestions.length - 1), 0)
+  $suggestions[nextIndex].classList.add('selected')
+  $searchInput.value = $suggestions[nextIndex].innerText
+}
+
+
+       
     </script>
 </body>
 </html>
