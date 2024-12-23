@@ -803,7 +803,7 @@ $app.addEventListener('click', (event) => {
             suggestions.forEach(suggestion => {
                 const li = document.createElement('li');
                 li.textContent = suggestion.suggestion;
-                $suggestions.appendChild(li);
+                $suggestionList.appendChild(li);
             });
          if (suggestions.length > 0) {
     $app.classList.add('hasSuggestions')
