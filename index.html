@@ -775,7 +775,7 @@ $app.addEventListener('click', (event) => {
         $list.innerHTML = "";
         results.forEach(result => {
             const li = document.createElement('li');
-         li.innerHTML = result.html.join('\n');
+         li.innerHTML = result.html;
            $results.appendChild(li);
          })
 
@@ -785,15 +785,12 @@ $app.addEventListener('click', (event) => {
    // return `<li>
    //   <h3>${result.html}</h3>    
    // </li>`
- //}).join('\n')
-        
+ //}).join('\n')        
         if (results.length > 1) {
     $app.classList.add('hasResults')
   } else {
     $app.classList.remove('hasResults')
-  }
-        };
-        
+  }};        
      //  const renderSuggestions = (suggestions) => {
      //       $suggestionList.innerHTML = "";
      //       suggestions.forEach(suggestion => {
