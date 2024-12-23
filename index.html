@@ -771,21 +771,21 @@ $app.addEventListener('click', (event) => {
           };
 
 
-   //   const renderSearchResults = (results) => {
-   //     $results.innerHTML = "";
-    //    results.forEach(result => {
-    //        const li = document.createElement('li');
-     //      li.innerHTML = result.html;
-    //       $results.appendChild(li);
-    //     });
+      const renderSearchResults = (results) => {
+        $results.innerHTML = "";
+        results.forEach(result => {
+            const li = document.createElement('li');
+         li.innerHTML = result.html;
+           $results.appendChild(li);
+         }).join('\n')
 
-const renderSearchResults = (results) => {
-  $list.innerHTML = results.map(({
-    text}) => {
-    return `<li class="Song">
-      <h3>${result.html}</h3>    
-    </li>`
-  }).join('\n')
+//const renderSearchResults = (results) => {
+ // $list.innerHTML = results.map(({
+   // text}) => {
+   // return `<li>
+   //   <h3>${result.html}</h3>    
+   // </li>`
+ //}).join('\n')
         
         if (results.length > 1) {
     $app.classList.add('hasResults')
