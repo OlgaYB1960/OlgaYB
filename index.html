@@ -775,9 +775,9 @@ $app.addEventListener('click', (event) => {
         $list.innerHTML = "";
         results.forEach(result => {
             const li = document.createElement('li');
-         li.innerHTML = result.html;
+         li.innerHTML = result.html.join('\n');
            $results.appendChild(li);
-         }).join('\n')
+         })
 
 //const renderSearchResults = (results) => {
  // $list.innerHTML = results.map(({
