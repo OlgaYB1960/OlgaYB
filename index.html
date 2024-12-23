@@ -798,13 +798,18 @@ $app.addEventListener('click', (event) => {
   }
         };
         
-       const renderSuggestions = (suggestions) => {
-            $suggestionList.innerHTML = "";
-            suggestions.forEach(suggestion => {
-                const li = document.createElement('li');
-                li.textContent = suggestion.suggestion;
-                $suggestionList.appendChild(li);
-            });
+     //  const renderSuggestions = (suggestions) => {
+     //       $suggestionList.innerHTML = "";
+     //       suggestions.forEach(suggestion => {
+      //          const li = document.createElement('li');
+      //         li.textContent = suggestion.suggestion;
+        //        $suggestionList.appendChild(li);
+        //    });
+const renderSuggestions = (suggestions) => {
+  $suggestionList.innerHTML = suggestions.map(({ suggestion }) => {
+    return `<li class="Suggestion">${suggestion}</li>`
+  }).join('\n')
+         
          if (suggestions.length > 0) {
     $app.classList.add('hasSuggestions')
   } else {
