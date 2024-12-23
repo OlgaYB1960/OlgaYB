@@ -784,13 +784,22 @@ $app.addEventListener('click', (event) => {
           };
 
 
-      const renderSearchResults = (results) => {
-        $results.innerHTML = "";
-        results.forEach(result => {
-            const li = document.createElement('li');
-           li.innerHTML = result.html;
-           $results.appendChild(li);
-         });
+   //   const renderSearchResults = (results) => {
+   //     $results.innerHTML = "";
+    //    results.forEach(result => {
+    //        const li = document.createElement('li');
+     //      li.innerHTML = result.html;
+    //       $results.appendChild(li);
+    //     });
+
+const renderSearchResults = (results) => {
+  $results.innerHTML = results.map(({
+    text}) => {
+    return `<li class="Song">
+      <h3>${capitalize(text)}</h3>    
+    </li>`
+  }).join('\n')
+        
         if (results.length > 1) {
     $app.classList.add('hasResults')
   } else {
@@ -832,7 +841,7 @@ const selectSuggestion = (direction) => {
   $searchInput.value = $suggestions[nextIndex].innerText
 }
 
-
+const capitalize = (string) => string.replace(/(\b\w)/gi, (char) => char.toUpperCase())
        
     </script>
 </body>
